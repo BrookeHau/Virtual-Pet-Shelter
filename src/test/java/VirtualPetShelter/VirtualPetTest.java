@@ -3,7 +3,6 @@ package VirtualPetShelter;
 import org.junit.Test;
 import org.junit.Assert;
 
-
 public class VirtualPetTest {
 
 	@Test
@@ -43,7 +42,7 @@ public class VirtualPetTest {
 		Assert.assertEquals(7, bathroom);
 		Assert.assertEquals(3, thirst);
 		Assert.assertEquals(5, boredom);
-		Assert.assertEquals(4, hunger);		
+		Assert.assertEquals(4, hunger);
 	}
 
 	@Test
@@ -53,8 +52,16 @@ public class VirtualPetTest {
 		Assert.assertEquals("Henry dog 5 5 5 5", printString);
 	}
 	
-	@Test 
-	public void changesForPlay(){
+	@Test
+	public void shouldPrintNamDesc() {
+		VirtualPet underTest = new VirtualPet("Henry", "dog");
+		String printString = underTest.showNameDesc();
+		Assert.assertEquals("Henry dog", printString);
+	}
+	
+
+	@Test
+	public void changesForPlay() {
 		VirtualPet petTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
 		petTest.playWithPet();
 		int hunger = petTest.getHunger();
@@ -66,9 +73,9 @@ public class VirtualPetTest {
 		Assert.assertEquals(2, boredom);
 		Assert.assertEquals(6, hunger);
 	}
-	
+
 	@Test
-	public void changesForTick(){
+	public void changesForTick() {
 		VirtualPet petTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
 		petTest.tick();
 		int hunger = petTest.getHunger();
@@ -80,18 +87,25 @@ public class VirtualPetTest {
 		Assert.assertEquals(3, boredom);
 		Assert.assertEquals(8, hunger);
 	}
-	
+
 	@Test
-	public void getName(){
+	public void getName() {
 		VirtualPet petTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
 		String name = petTest.getName();
 		Assert.assertEquals("Henry", name);
 	}
-	
+
 //	@Test
-//	public void getOverallHealth(){
-//		VirtualPet petTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
-//	String health = petTest.getHealth();
-//	Assert.assertEquals("Feeling so so", health);
+//	public void getOverallHealth() {
+//		VirtualPet petTest = new VirtualPet("Henry", "dog", 7, 6, 8, 6);
+//		String health = petTest.getHealth();
+//		Assert.assertEquals("Feeling great", health);
 //	}
+//
+//	 @Test
+//	 public void getAnotherOverallHealth(){
+//	 VirtualPet petTest = new VirtualPet("Henry", "dog", 3, 3, 3, 3);
+//	 String health = petTest.getHealth();
+//	 Assert.assertEquals("Feeling down", health);
+//	 }
 }

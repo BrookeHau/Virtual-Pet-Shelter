@@ -21,6 +21,11 @@ public class VirtualPet {
 
 	}
 
+	public VirtualPet(String petName, String description) {
+		this.petName = petName;
+		this.description = description;
+	}
+
 	public void feedPet() {
 		petHunger -= 2;
 		petThirst += 1;
@@ -72,11 +77,27 @@ public class VirtualPet {
 		return petName;
 	}
 
-//	public String getHealth() {
-//		String health = " ";
-//		if(petHunger == 5 && petThirst ==5 && petBoredom ==5 && petBathroom ==5){
-//			health =  System.out.println("Feeling so so");
-//		} if( petHunger < 5 && petThirst <)
-//	}
+	public String getHealth() {
+		String health = (" ");
+		if (petHunger == 0 && petThirst == 0 && petBoredom == 0 && petBathroom == 0) {
+			health = "Feeling real down";
+		}
+		if (petHunger < 0 && petThirst < 0 && petBoredom < 0 && petBathroom < 0) {
+			health = "Feeling down";
+		}
+		if (petHunger == 5 && petThirst == 5 && petBoredom == 5 && petBathroom == 5) {
+			health = "Feeling so so";
+		}
+		if (petHunger > 5 && petThirst > 5 && petBoredom > 5 && petBathroom > 5) {
+			health = "Feeling great";
+		} else {
+			health = "Feeling alright";
+		}
+		return health;
+	}
+
+	public String showNameDesc() {
+		return petName + " " + description;
+	}
 
 }

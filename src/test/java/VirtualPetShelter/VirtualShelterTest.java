@@ -1,10 +1,9 @@
 package VirtualPetShelter;
 
 import org.junit.Test;
+import org.junit.Assert;
 
-import junit.framework.Assert;
 
-import static java.math.BigDecimal.ZERO;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
@@ -41,6 +40,27 @@ public class VirtualShelterTest {
 		underTest.admitPet(anotherPet);
 		int size = underTest.shelterSize();
 		Assert.assertEquals(2, size);
-		
+	}
+
+	@Test
+	public void shouldRemovePet() {
+		VirtualShelter underTest = new VirtualShelter();
+		VirtualPet pet = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
+		VirtualPet anotherPet = new VirtualPet("Woody", "dog", 5, 5, 5, 5);
+		underTest.admitPet(pet);
+		underTest.adoptPet("Henry");
+		VirtualPet found = underTest.findPet("Henry");
+		assertThat(found, is(nullValue()));
+
+	}
+	
+	@Test
+	public void shouldFeedSpecificPet() {
+		VirtualShelter underTest = new VirtualShelter();
+		VirtualPet pet = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
+		underTest.feedSpecificPet(pet);
+		int hunger = underTest.getHunger(pet);
+		Assert.assertEquals(3, hunger);
+
 	}
 }

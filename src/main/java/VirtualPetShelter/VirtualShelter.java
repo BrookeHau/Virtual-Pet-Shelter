@@ -19,4 +19,18 @@ public class VirtualShelter {
 		return pets.size();
 	}
 
+	public void adoptPet(String petName) {
+		pets.remove(petName);
+	}
+
+	public void feedSpecificPet(VirtualPet petName) {
+		pets.get(petName).feedPet();
+	}
+
+	public int getHunger(String pet) {
+		return pets.get(pet).getHunger();
+	}
+
+
+
 }
