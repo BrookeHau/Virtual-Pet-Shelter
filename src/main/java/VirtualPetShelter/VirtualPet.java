@@ -24,6 +24,10 @@ public class VirtualPet {
 	public VirtualPet(String petName, String description) {
 		this.petName = petName;
 		this.description = description;
+		this.petHunger = 5;
+		this.petThirst = 5;
+		this.petBoredom = 5;
+		this.petBathroom = 5;
 	}
 
 	public void feedPet() {

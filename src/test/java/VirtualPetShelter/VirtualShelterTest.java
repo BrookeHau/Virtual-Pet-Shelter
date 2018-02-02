@@ -37,6 +37,14 @@ public class VirtualShelterTest {
 		String info = shelterUnderTest.getNameDesc("Henry");
 		Assert.assertEquals("Henry the dog.", info);
 	}
+	
+	@Test
+	public void showAllPets(){
+		shelterUnderTest.admitPet(testPet);
+//		shelterUnderTest.admitPet(anotherPet);
+		String pets = shelterUnderTest.showPets();
+		assertThat(pets, is(testPet));
+	}
 
 	@Test
 	public void shouldAddPet() {
