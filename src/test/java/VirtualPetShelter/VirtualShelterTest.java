@@ -3,7 +3,6 @@ package VirtualPetShelter;
 import org.junit.Test;
 import org.junit.Assert;
 
-
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
@@ -11,10 +10,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 
 public class VirtualShelterTest {
+
+	private VirtualPet testPet = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
+	private VirtualShelter shelterUnderTest = new VirtualShelter();
+	private VirtualPet anotherPet = new VirtualPet("Woody", "dog", 5, 5, 5, 5);
 
 	@Test
 	public void setup() {
@@ -23,44 +25,74 @@ public class VirtualShelterTest {
 	}
 
 	@Test
+	public void getFullPetInfo(){
+		shelterUnderTest.admitPet(testPet);
+		String info = shelterUnderTest.getFullPetInfo("Henry");
+		Assert.assertEquals("Henry the dog has hunger of 5, thirst of 5, boredom of 5, and bathroom of 5.", info);
+	}
+	
+	@Test
+	public void getPartialPetInfo(){
+		shelterUnderTest.admitPet(testPet);
+		String info = shelterUnderTest.getNameDesc("Henry");
+		Assert.assertEquals("Henry the dog.", info);
+	}
+
+	@Test
 	public void shouldAddPet() {
-		VirtualShelter underTest = new VirtualShelter();
-		VirtualPet pet = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
-		underTest.admitPet(pet);
-		VirtualPet retrieved = underTest.findPet("Henry");
-		assertThat(retrieved, is(pet));
+		shelterUnderTest.admitPet(testPet);
+		VirtualPet retrieved = shelterUnderTest.findPet("Henry");
+		assertThat(retrieved, is(testPet));
 	}
 
 	@Test
 	public void shouldAddMultiplePets() {
-		VirtualShelter underTest = new VirtualShelter();
-		VirtualPet pet = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
-		VirtualPet anotherPet = new VirtualPet("Woody", "dog", 5, 5, 5, 5);
-		underTest.admitPet(pet);
-		underTest.admitPet(anotherPet);
-		int size = underTest.shelterSize();
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.admitPet(anotherPet);
+		int size = shelterUnderTest.shelterSize();
 		Assert.assertEquals(2, size);
 	}
 
 	@Test
 	public void shouldRemovePet() {
-		VirtualShelter underTest = new VirtualShelter();
-		VirtualPet pet = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
-		VirtualPet anotherPet = new VirtualPet("Woody", "dog", 5, 5, 5, 5);
-		underTest.admitPet(pet);
-		underTest.adoptPet("Henry");
-		VirtualPet found = underTest.findPet("Henry");
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.adoptPet("Henry");
+		VirtualPet found = shelterUnderTest.findPet("Henry");
 		assertThat(found, is(nullValue()));
 
 	}
-	
+
 	@Test
 	public void shouldFeedSpecificPet() {
-		VirtualShelter underTest = new VirtualShelter();
-		VirtualPet pet = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
-		underTest.feedSpecificPet(pet);
-		int hunger = underTest.getHunger(pet);
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.feedSpecificPet("Henry");
+		int hunger = shelterUnderTest.getPetHunger("Henry");
 		Assert.assertEquals(3, hunger);
-
 	}
+	
+	@Test
+	public void shouldWaterSpecificPet() {
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.waterSpecificPet("Henry");
+		int thirst = shelterUnderTest.getPetThirst("Henry");
+		Assert.assertEquals(3, thirst);
+	}
+	
+	@Test
+	public void shouldPlaySpecificPet() {
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.playSpecificPet("Henry");
+		int boredom = shelterUnderTest.getPetBoredom("Henry");
+		Assert.assertEquals(2, boredom);
+	}
+	
+	@Test
+	public void shouldTakePetToBathroom(){
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.takeSpecificPettoBathroom("Henry");
+		int bathroom = shelterUnderTest.getPetBathroom("Henry");
+		Assert.assertEquals(2, bathroom);
+	}
+	
+	
 }

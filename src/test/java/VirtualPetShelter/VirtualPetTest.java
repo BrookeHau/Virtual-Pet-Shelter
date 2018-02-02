@@ -5,6 +5,8 @@ import org.junit.Assert;
 
 public class VirtualPetTest {
 
+	private VirtualPet petTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
+
 	@Test
 	public void shouldmakeClass() {
 		VirtualPet underTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
@@ -49,20 +51,19 @@ public class VirtualPetTest {
 	public void shouldPrintFullPetInfo() {
 		VirtualPet underTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
 		String printString = underTest.toString();
-		Assert.assertEquals("Henry dog 5 5 5 5", printString);
+		Assert.assertEquals("Henry the dog has hunger of 5, thirst of 5, boredom of 5, and bathroom of 5."
+				+ "", printString);
 	}
-	
+
 	@Test
 	public void shouldPrintNamDesc() {
 		VirtualPet underTest = new VirtualPet("Henry", "dog");
 		String printString = underTest.showNameDesc();
-		Assert.assertEquals("Henry dog", printString);
+		Assert.assertEquals("Henry the dog.", printString);
 	}
-	
 
 	@Test
 	public void changesForPlay() {
-		VirtualPet petTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
 		petTest.playWithPet();
 		int hunger = petTest.getHunger();
 		int bathroom = petTest.getBathroom();
@@ -73,10 +74,23 @@ public class VirtualPetTest {
 		Assert.assertEquals(2, boredom);
 		Assert.assertEquals(6, hunger);
 	}
+	
+	@Test 
+	public void changesForBathroom(){
+		petTest.takePetToBathroom();
+		int hunger = petTest.getHunger();
+		int bathroom = petTest.getBathroom();
+		int thirst = petTest.getThirst();
+		int boredom = petTest.getBoredom();
+		Assert.assertEquals(2, bathroom);
+		Assert.assertEquals(5, thirst);
+		Assert.assertEquals(5, boredom);
+		Assert.assertEquals(5, hunger);
+		
+	}
 
 	@Test
 	public void changesForTick() {
-		VirtualPet petTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
 		petTest.tick();
 		int hunger = petTest.getHunger();
 		int bathroom = petTest.getBathroom();
@@ -90,22 +104,21 @@ public class VirtualPetTest {
 
 	@Test
 	public void getName() {
-		VirtualPet petTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
 		String name = petTest.getName();
 		Assert.assertEquals("Henry", name);
 	}
 
-//	@Test
-//	public void getOverallHealth() {
-//		VirtualPet petTest = new VirtualPet("Henry", "dog", 7, 6, 8, 6);
-//		String health = petTest.getHealth();
-//		Assert.assertEquals("Feeling great", health);
-//	}
-//
-//	 @Test
-//	 public void getAnotherOverallHealth(){
-//	 VirtualPet petTest = new VirtualPet("Henry", "dog", 3, 3, 3, 3);
-//	 String health = petTest.getHealth();
-//	 Assert.assertEquals("Feeling down", health);
-//	 }
+	// @Test
+	// public void getOverallHealth() {
+	// VirtualPet petTest = new VirtualPet("Henry", "dog", 7, 6, 8, 6);
+	// String health = petTest.getHealth();
+	// Assert.assertEquals("Feeling great", health);
+	// }
+	//
+	// @Test
+	// public void getAnotherOverallHealth(){
+	// VirtualPet petTest = new VirtualPet("Henry", "dog", 3, 3, 3, 3);
+	// String health = petTest.getHealth();
+	// Assert.assertEquals("Feeling down", health);
+	// }
 }

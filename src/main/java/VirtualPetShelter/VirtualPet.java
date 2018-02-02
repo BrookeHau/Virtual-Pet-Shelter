@@ -37,9 +37,12 @@ public class VirtualPet {
 		return petHunger;
 	}
 
+	public String showNameDesc() {
+		return petName + " the " + description + ".";
+	}
 	@Override
 	public String toString() {
-		return petName + " " + description + " " + petHunger + " " + petThirst + " " + petBoredom + " " + petBathroom;
+		return petName + " the " + description + " has hunger of " + petHunger + ", thirst of " + petThirst + ", boredom of " + petBoredom + ", and bathroom of " + petBathroom + ".";
 	}
 
 	public int getBathroom() {
@@ -96,8 +99,9 @@ public class VirtualPet {
 		return health;
 	}
 
-	public String showNameDesc() {
-		return petName + " " + description;
+
+	public void takePetToBathroom() {
+		petBathroom -= 3;
 	}
 
 }
