@@ -51,8 +51,8 @@ public class VirtualPetTest {
 	public void shouldPrintFullPetInfo() {
 		VirtualPet underTest = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
 		String printString = underTest.toString();
-		Assert.assertEquals("Henry the dog has hunger of 5, thirst of 5, boredom of 5, and bathroom of 5."
-				+ "", printString);
+		Assert.assertEquals("Henry the dog has hunger of 5, thirst of 5, boredom of 5, and bathroom of 5." + "",
+				printString);
 	}
 
 	@Test
@@ -74,9 +74,9 @@ public class VirtualPetTest {
 		Assert.assertEquals(2, boredom);
 		Assert.assertEquals(6, hunger);
 	}
-	
-	@Test 
-	public void changesForBathroom(){
+
+	@Test
+	public void changesForBathroom() {
 		petTest.takePetToBathroom();
 		int hunger = petTest.getHunger();
 		int bathroom = petTest.getBathroom();
@@ -86,7 +86,7 @@ public class VirtualPetTest {
 		Assert.assertEquals(5, thirst);
 		Assert.assertEquals(5, boredom);
 		Assert.assertEquals(5, hunger);
-		
+
 	}
 
 	@Test

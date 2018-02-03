@@ -1,5 +1,6 @@
 package VirtualPetShelter;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -7,14 +8,14 @@ import java.util.Map.Entry;
 public class VirtualShelter {
 
 	private Map<String, VirtualPet> pets = new HashMap<>();
-	
-	public VirtualShelter(){
-		pets.put("Henry", new VirtualPet("Henry", "dog", 5, 4, 7, 3));
-		pets.put("Woody", new VirtualPet("Woody", "dog", 2, 4, 4, 6));
-		pets.put("Kitty", new VirtualPet("Kitty", "cat", 3, 3, 5, 4));
+
+	public VirtualShelter() {
+		pets.put("Henry", new VirtualPet("Henry", "dog with an old soul, and a charmer", 5, 4, 7, 3));
+		pets.put("Woody", new VirtualPet("Woody", "energetic and playful dog", 2, 4, 4, 6));
+		pets.put("Kitty", new VirtualPet("Kitty", "cat that loves to play fetch", 3, 3, 5, 4));
 		pets.put("Leigh Ann", new VirtualPet("Leigh Ann", "teacup pig", 5, 4, 7, 3));
 	}
-	
+
 	public void admitPet(VirtualPet pet) {
 		pets.put(pet.getName(), pet);
 	}
@@ -71,9 +72,24 @@ public class VirtualShelter {
 		return pets.get(pet).showNameDesc();
 	}
 
-	public void showPets(){
-		for (Entry<String, VirtualPet> entry: pets.entrySet()){
-			System.out.println(entry.getValue().toString());
+	public Collection<VirtualPet> showPets() {
+		return pets.values();
+	}
+
+	public void clear() {
+		pets.clear();
+	}
+
+	public void feedAllPets() {
+		for (VirtualPet pet : pets.values()) {
+			pet.feedPet();
 		}
 	}
+
+	public void waterAllPets() {
+		for (VirtualPet pet : pets.values()) {
+			pet.waterPet();
+		}
+	}
+
 }
