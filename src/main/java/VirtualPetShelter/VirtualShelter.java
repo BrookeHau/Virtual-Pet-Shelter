@@ -92,4 +92,11 @@ public class VirtualShelter {
 		}
 	}
 
+	public void calltick() {
+		for (VirtualPet pet : pets.values()) {
+			pet.tick();
+		}
+
+	}
+
 }

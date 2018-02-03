@@ -2,16 +2,13 @@ package VirtualPetShelter;
 
 import org.junit.Test;
 
-
 import org.junit.Assert;
 import org.junit.Before;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
@@ -130,6 +127,21 @@ public class VirtualShelterTest {
 		int thirst = shelterUnderTest.getPetThirst("Woody");
 		Assert.assertEquals(4, hunger);
 		Assert.assertEquals(3, thirst);
+	}
+
+	@Test
+	public void useTick() {
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.admitPet(anotherPet);
+		shelterUnderTest.calltick();
+		int hunger = shelterUnderTest.getPetHunger("Henry");
+		int bathroom = shelterUnderTest.getPetBathroom("Henry");
+		int thirst = shelterUnderTest.getPetThirst("Woody");
+		int boredom = shelterUnderTest.getPetBoredom("Woody");
+		Assert.assertEquals(9, bathroom);
+		Assert.assertEquals(9, thirst);
+		Assert.assertEquals(3, boredom);
+		Assert.assertEquals(8, hunger);
 	}
 
 }
