@@ -24,12 +24,6 @@ public class VirtualShelterTest {
 	}
 
 	@Test
-	public void setup() {
-		VirtualShelter underTest = new VirtualShelter();
-
-	}
-
-	@Test
 	public void getFullPetInfo() {
 		shelterUnderTest.admitPet(testPet);
 		String info = shelterUnderTest.getFullPetInfo("Henry");

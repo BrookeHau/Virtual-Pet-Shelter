@@ -108,17 +108,4 @@ public class VirtualPetTest {
 		Assert.assertEquals("Henry", name);
 	}
 
-	// @Test
-	// public void getOverallHealth() {
-	// VirtualPet petTest = new VirtualPet("Henry", "dog", 7, 6, 8, 6);
-	// String health = petTest.getHealth();
-	// Assert.assertEquals("Feeling great", health);
-	// }
-	//
-	// @Test
-	// public void getAnotherOverallHealth(){
-	// VirtualPet petTest = new VirtualPet("Henry", "dog", 3, 3, 3, 3);
-	// String health = petTest.getHealth();
-	// Assert.assertEquals("Feeling down", health);
-	// }
 }
